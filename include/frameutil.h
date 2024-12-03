@@ -10,7 +10,6 @@
 #include <stdint.h>
 #include <string>
 
-typedef enum { UDP = 0, TCP = 1 } Protocol;
 typedef enum { H_FRAME = 0, I_FRAME = 1, P_FRAME = 2, CONNECT_HEADER = 3, AUDIO_FRAME = 16, UNKNOWN_FRAME } FrameType;
 // typedef enum { VIDEO = 0, AUDIO = 1, METADATA_TYPE = 2 } PacketMedia;
 
