@@ -5,12 +5,12 @@ cmake_minimum_required(VERSION 3.15)
 
 set(VERSION 0.1.0)
 
-project(frameurtil
+project(frameutil
 	VERSION ${VERSION}
 	DESCRIPTION "A simple wrapper around poco uri parser"
-	HOMEPAGE_URL "https://github.com/vtpl1/frameurtil"
+	HOMEPAGE_URL "https://github.com/vtpl1/frameutil"
 	LANGUAGES CXX)
-set(COMPONENT1 frameurtil)
+set(COMPONENT1 frameutil)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 set(CMAKE_CXX_CLANG_TIDY
@@ -23,7 +23,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 list(APPEND COMPONENT1_PUBLIC_HEADERS
-	include/frameurtil.h
+	include/frameutil.h
 	${PROJECT_BINARY_DIR}/${COMPONENT1}_export.h
 	${PROJECT_BINARY_DIR}/version.h)
 

@@ -3,10 +3,10 @@
 // *****************************************************
 
 #pragma once
-#ifndef frameurtil_h
-#define frameurtil_h
+#ifndef frameutil_h
+#define frameutil_h
 
-#include <frameurtil_export.h>
+#include <frameutil_export.h>
 #include <stdint.h>
 #include <string>
 
@@ -37,11 +37,11 @@ typedef enum {
 
 namespace vtpl::common {
 enum NALBoundaryCondition { NO_CHANGE, NAL_ERROR, NAL_BOUNDARY_START_SPS, NAL_BOUNDARY_START_IDR, NAL_BOUNDARY_END };
-NALBoundaryCondition FRAMEURTIL_EXPORT findNALBoundaryCondition(uint8_t last_frame_nal_type,
+NALBoundaryCondition FRAMEUTIL_EXPORT findNALBoundaryCondition(uint8_t last_frame_nal_type,
                                                                 uint8_t current_frame_nal_type, MediaType media_type);
-uint8_t FRAMEURTIL_EXPORT              extractNALType(uint8_t raw_byte, MediaType media_type);
+uint8_t FRAMEUTIL_EXPORT              extractNALType(uint8_t raw_byte, MediaType media_type);
 
-std::string FRAMEURTIL_EXPORT getCodecString(unsigned char frameType);
+std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frameType);
 
 inline bool IS_AUDIO(int32_t x) {
   return (x == MLAW || x == PCMU || x == ALAW || x == PCMA || x == L16 || x == ACC_CODEC || x == UNKNOWN_CODEC);
@@ -101,9 +101,9 @@ enum HEVCNALUnitType {
   HEVC_NAL_SEI_SUFFIX = 40
 };
 
-std::string FRAMEURTIL_EXPORT getCodecString(unsigned char frameType);
+std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frameType);
 
-class FRAMEURTIL_EXPORT NALBoundaryDetector {
+class FRAMEUTIL_EXPORT NALBoundaryDetector {
 public:
   bool isDetected(const uint8_t* data, int32_t media_type);
 
@@ -113,4 +113,4 @@ private:
 };
 
 } // namespace vtpl::common
-#endif // frameurtil_h
+#endif // frameutil_h
