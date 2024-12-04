@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <string>
 
+namespace vtpl::common {
 typedef enum { H_FRAME = 0, I_FRAME = 1, P_FRAME = 2, CONNECT_HEADER = 3, AUDIO_FRAME = 16, UNKNOWN_FRAME } FrameType;
 // typedef enum { VIDEO = 0, AUDIO = 1, METADATA_TYPE = 2 } PacketMedia;
 
@@ -34,10 +35,9 @@ typedef enum {
   H265_CODEC    = 8
 } MediaType;
 
-namespace vtpl::common {
 enum NALBoundaryCondition { NO_CHANGE, NAL_ERROR, NAL_BOUNDARY_START_SPS, NAL_BOUNDARY_START_IDR, NAL_BOUNDARY_END };
 NALBoundaryCondition FRAMEUTIL_EXPORT findNALBoundaryCondition(uint8_t last_frame_nal_type,
-                                                                uint8_t current_frame_nal_type, MediaType media_type);
+                                                               uint8_t current_frame_nal_type, MediaType media_type);
 uint8_t FRAMEUTIL_EXPORT              extractNALType(uint8_t raw_byte, MediaType media_type);
 
 std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frameType);
