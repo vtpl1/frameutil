@@ -47,16 +47,23 @@ target_include_directories(${COMPONENT1}
 		$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}>
 		$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>
 	PRIVATE
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>)
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
+)
+
+target_compile_features(${COMPONENT1}
+	PUBLIC cxx_std_17
+)
 
 set_target_properties(
 	${COMPONENT1} PROPERTIES
-		POSITION_INDEPENDENT_CODE ON)
+		POSITION_INDEPENDENT_CODE ON
+)
 
 set_target_properties(
 	${COMPONENT1} PROPERTIES
 		SOVERSION	${PROJECT_VERSION_MAJOR}
-		VERSION ${PROJECT_VERSION})
+		VERSION ${PROJECT_VERSION}
+)
 
 ## Install library + targets ##################################################
 include(CMakePackageConfigHelpers)
@@ -123,7 +130,8 @@ install(
         ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config.cmake
         ${PROJECT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake
     DESTINATION
-        ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+        ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}
+)
 
 # install(
 # 	DIRECTORY
