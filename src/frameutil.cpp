@@ -95,6 +95,14 @@ std::string getCodecString(unsigned char frameType) {
   }
 }
 
+bool isNALBoundaryDetected(const uint8_t* data, int32_t media_type) {
+  if (!IS_VIDEO(media_type)) {
+    return false;
+  }
+
+  return findNALBoundary(getNALUnitType(data, media_type), media_type, NAL_NONE);
+}
+
 bool NALBoundaryDetector::isDetected(const uint8_t* data, int32_t media_type) {
   if (!IS_VIDEO(media_type)) {
     return false;

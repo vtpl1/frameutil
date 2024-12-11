@@ -102,6 +102,8 @@ enum HEVCNALUnitType {
 
 std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frameType);
 
+bool FRAMEUTIL_EXPORT isNALBoundaryDetected(const uint8_t* data, int32_t media_type);
+
 class FRAMEUTIL_EXPORT NALBoundaryDetector {
 public:
   bool isDetected(const uint8_t* data, int32_t media_type);
