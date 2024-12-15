@@ -39,8 +39,9 @@ enum NALBoundaryCondition { NO_CHANGE, NAL_ERROR, NAL_BOUNDARY_START_SPS, NAL_BO
 NALBoundaryCondition FRAMEUTIL_EXPORT findNALBoundaryCondition(uint8_t last_frame_nal_type,
                                                                uint8_t current_frame_nal_type, MediaType media_type);
 uint8_t FRAMEUTIL_EXPORT              extractNALType(uint8_t raw_byte, MediaType media_type);
+std::string FRAMEUTIL_EXPORT          extractNALTypeString(uint8_t raw_nal_byte, MediaType media_type);
 
-std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frameType);
+std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frame_type);
 
 inline bool IS_AUDIO(int32_t x) {
   return (x == MLAW || x == PCMU || x == ALAW || x == PCMA || x == L16 || x == ACC_CODEC || x == UNKNOWN_CODEC);
@@ -99,8 +100,6 @@ enum HEVCNALUnitType {
   HEVC_NAL_SEI_PREFIX = 39, // H-FRAME
   HEVC_NAL_SEI_SUFFIX = 40
 };
-
-std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frameType);
 
 bool FRAMEUTIL_EXPORT isNALBoundaryDetected(const uint8_t* data, int32_t media_type);
 
