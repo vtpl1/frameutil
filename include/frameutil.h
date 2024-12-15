@@ -41,7 +41,7 @@ NALBoundaryCondition FRAMEUTIL_EXPORT findNALBoundaryCondition(uint8_t last_fram
 uint8_t FRAMEUTIL_EXPORT              extractNALType(uint8_t raw_byte, MediaType media_type);
 std::string FRAMEUTIL_EXPORT          extractNALTypeString(uint8_t raw_nal_byte, MediaType media_type);
 
-std::string FRAMEUTIL_EXPORT getCodecString(unsigned char frame_type);
+std::string FRAMEUTIL_EXPORT getCodecString(unsigned char media_type);
 
 inline bool IS_AUDIO(int32_t x) {
   return (x == MLAW || x == PCMU || x == ALAW || x == PCMA || x == L16 || x == ACC_CODEC || x == UNKNOWN_CODEC);

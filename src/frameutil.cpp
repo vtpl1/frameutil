@@ -225,8 +225,8 @@ NALBoundaryCondition findNALBoundaryCondition(uint8_t last_frame_nal_type, uint8
   return NALBoundaryCondition::NAL_ERROR;
 }
 
-std::string getCodecString(unsigned char frame_type) {
-  switch (frame_type) {
+std::string getCodecString(unsigned char media_type) {
+  switch (media_type) {
   case MJPG:
     return "MJPEG";
   case MPEG:
