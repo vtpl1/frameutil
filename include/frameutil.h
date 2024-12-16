@@ -36,17 +36,6 @@ typedef enum {
 } MediaType;
 
 enum NALBoundaryCondition { NO_CHANGE, NAL_ERROR, NAL_BOUNDARY_START_SPS, NAL_BOUNDARY_START_IDR, NAL_BOUNDARY_END };
-NALBoundaryCondition FRAMEUTIL_EXPORT findNALBoundaryCondition(uint8_t last_frame_nal_type,
-                                                               uint8_t current_frame_nal_type, MediaType media_type);
-uint8_t FRAMEUTIL_EXPORT              extractNALType(uint8_t raw_byte, MediaType media_type);
-std::string FRAMEUTIL_EXPORT          extractNALTypeString(uint8_t raw_nal_byte, MediaType media_type);
-
-std::string FRAMEUTIL_EXPORT getCodecString(unsigned char media_type);
-
-inline bool IS_AUDIO(int32_t x) {
-  return (x == MLAW || x == PCMU || x == ALAW || x == PCMA || x == L16 || x == ACC_CODEC || x == UNKNOWN_CODEC);
-}
-inline bool IS_VIDEO(int32_t x) { return (x == MJPG || x == H264 || x == H265); }
 
 enum H264Or5NalUnitType {
   NAL_NONE = 0,
@@ -101,15 +90,25 @@ enum HEVCNALUnitType {
   HEVC_NAL_SEI_SUFFIX = 40
 };
 
-bool FRAMEUTIL_EXPORT isNALBoundaryDetected(const uint8_t* data, int32_t media_type);
+// NALBoundaryCondition FRAMEUTIL_EXPORT findNALBoundaryCondition(uint8_t last_frame_nal_type,
+//                                                                uint8_t current_frame_nal_type, MediaType media_type);
+inline bool IS_AUDIO(int32_t x) {
+  return (x == MLAW || x == PCMU || x == ALAW || x == PCMA || x == L16 || x == ACC_CODEC || x == UNKNOWN_CODEC);
+}
+inline bool IS_VIDEO(int32_t x) { return (x == MJPG || x == H264 || x == H265); }
 
-class FRAMEUTIL_EXPORT NALBoundaryDetector {
+uint8_t FRAMEUTIL_EXPORT     extractNALType(uint8_t raw_nal_byte, MediaType media_type);
+std::string FRAMEUTIL_EXPORT extractNALTypeString(uint8_t raw_nal_byte, MediaType media_type);
+std::string FRAMEUTIL_EXPORT getCodecString(MediaType media_type);
+bool FRAMEUTIL_EXPORT        isNALBoundaryDetected(uint8_t raw_nal_byte, MediaType media_type);
+
+class FRAMEUTIL_EXPORT IDRBoundaryDetector {
 public:
-  bool isDetected(const uint8_t* data, int32_t media_type);
+  bool isDetected(uint8_t raw_nal_byte, MediaType media_type);
 
 private:
-  uint8_t last_frame_NAL_type_{NAL_NONE};
-  uint8_t last_media_type_{0};
+  uint8_t   last_nal_type_{NAL_NONE};
+  MediaType last_media_type_{MediaType::UNKNOWN};
 };
 
 } // namespace vtpl::common
