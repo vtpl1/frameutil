@@ -230,7 +230,7 @@ bool IDRBoundaryDetector::isDetected(uint8_t raw_nal_byte, MediaType media_type)
   }
   if (media_type == MediaType::H265) {
     if (((last_nal_type_ == HEVC_NAL_TRAIL_R) || (last_nal_type_ == HEVC_NAL_NONE)) &&
-        (nal_type == HEVC_NAL_IDR_W_RADL)) {
+        ((nal_type == HEVC_NAL_IDR_W_RADL) || (nal_type == HEVC_NAL_IDR_N_LP))) {
       is_idr_boundary_detected = true;
     }
   }
